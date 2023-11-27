@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import clsx from 'clsx';
 import { Background } from '../common';
 import './LoginModal.scss';
+import { Logo } from '../Logo';
 
 
 interface LoginModalProps {
@@ -22,10 +23,13 @@ export const LoginModal = (props: LoginModalProps) => {
         <>
             <Background className={loginBackgroundClass} image={backgroundImage} />
             <div className={loginModalClass}>
-                <div className={'login-modal__header'}>PANEL ADMINISTRACYJNY</div>
+
+                <div className={'login-modal__header'}>MY NURSERY</div>
                 <div className={loginModaTitlelClass}>{title}</div>
                 {children}
+                <Logo />
             </div>
+
         </>
     );
 };

@@ -17,5 +17,5 @@ export const post = async (url: string, data: Object) => {
     init.method = Method.Post;
     init.body = JSON.stringify(data);
     const response = await fetch(baseUrl + url, init);
-    return response
+    return await response.json()
 }

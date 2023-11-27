@@ -23,13 +23,22 @@
     &__header {
         position: absolute;
         left: 50%;
-        top: -30px;
+        top: -40px;
         min-width: 300px;
         color: white;
+        font-size: 24px;
         text-align: center;
         letter-spacing: 2px;
         transform: translateX(-50%);
         font-family: $decorationFont;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 40px;
+        bottom: 40px;
     }
 
 }
