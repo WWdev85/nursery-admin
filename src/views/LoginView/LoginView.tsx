@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { LoginResponse, RegexPattern } from 'types'
-import { Button, Form, Input, InputType, LoginModal } from "../../components"
+import { Button, Form, Input, InputType, Loader, LoginModal } from "../../components"
 import './LoginView.scss'
 import background from '../../assets/images/background.png'
 import { validate } from '../../functions';
