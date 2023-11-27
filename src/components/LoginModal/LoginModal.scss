@@ -1,0 +1,23 @@
+@import '../../assets/scss/variables.scss';
+
+.login-modal {
+    box-sizing: border-box;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 500px;
+    padding: 32px;
+    color: $textColor;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .06);
+    background-color: white;
+
+    &__title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+}

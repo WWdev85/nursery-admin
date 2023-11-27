@@ -1,0 +1,67 @@
+@import '../../../assets/scss/variables.scss';
+
+.input {
+
+    width: 100%;
+    margin-bottom: 15px;
+
+    &__label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    &__field {
+
+        height: 38px;
+        width: 100%;
+        border: 1px solid $inputColor;
+        border-radius: 5px;
+    }
+}
+
+
+.field {
+    position: relative;
+
+    &__icon {
+        position: absolute;
+        width: 38px;
+        height: 100%;
+        padding: 12px 0;
+        color: $inputColor;
+        border-right: 1px solid $inputColor;
+        cursor: pointer;
+    }
+
+    &__content {
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+        flex-grow: 1;
+        border: none;
+        border-radius: 5px;
+        color: $textColor;
+        outline: none;
+
+        &:focus {
+            background-color: #eeeeee;
+        }
+    }
+
+
+}
+
+.field--validation-error {
+    border-color: $inputErrorColor;
+
+    .field__icon {
+        border-right: 1px solid $inputErrorColor;
+    }
+}
+
+.field--icon {
+    .field__content {
+        padding-left: 48px;
+    }
+}
