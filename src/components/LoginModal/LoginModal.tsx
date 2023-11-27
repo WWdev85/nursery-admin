@@ -22,6 +22,7 @@ export const LoginModal = (props: LoginModalProps) => {
         <>
             <Background className={loginBackgroundClass} image={backgroundImage} />
             <div className={loginModalClass}>
+                <div className={'login-modal__header'}>PANEL ADMINISTRACYJNY</div>
                 <div className={loginModaTitlelClass}>{title}</div>
                 {children}
             </div>

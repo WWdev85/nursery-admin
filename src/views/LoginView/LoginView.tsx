@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { LoginResponse, RegexPattern } from 'types'
 import { Button, Form, Input, InputType, Loader, LoginModal } from "../../components"
 import './LoginView.scss'
 import background from '../../assets/images/background.png'
-import { validate } from '../../functions';
+import { post, validate } from '../../functions';
 
 
 
@@ -39,6 +40,11 @@ export const LoginView = () => {
 
     const handleSubmit = () => {
         console.log("logowanie")
+        const response = post('/auth/login', {
+            email: email,
+            password: password,
+        })
+        console.log(response)
     };
 
     const passwordIcon = !isPasswordVisible ? <FaEyeSlash onClick={toggleVisibility} /> : <FaEye onClick={toggleVisibility} />
@@ -50,6 +56,7 @@ export const LoginView = () => {
                     <Input className='login-form__input' type={isPasswordVisible ? InputType.Text : InputType.Password} placeholder={'Hasło'} value={password} validationRegex={RegexPattern.Minimum8Characters} icon={passwordIcon} validationErrorMessage={'hasło musi składać się minimum z 8 znaków'} onChangeFn={handleChangePassword} />
                     <Button className={'login-form__button'} disabled={isButtonDisabled} type={'submit'} text={'ZALOGUJ SIĘ'} onClickFn={handleSubmit} />
                 </Form>
+                <p className={"login__link"}>Nie pamiętasz hasła?  <Link to="/" className={"link"}>Resetuj hasło</Link></p>
             </LoginModal>
         </div>
 
