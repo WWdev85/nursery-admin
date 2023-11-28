@@ -17,6 +17,11 @@ jobs:
         run: npm install
       # - name: Run Tests
       #   run: npm test
+      - name: Checkout additional repository
+        uses: actions/checkout@v2
+        with:
+                repository: 'WWdev85/nursery-api'
+                path: 'nursery-api'
       - name: Check paths
         run: |
               pwd
