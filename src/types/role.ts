@@ -1,4 +1,4 @@
-import { PaginatedList } from 'types';
+import { PaginatedList } from '../types';
 
 export interface CreateRole {
     name: string,
