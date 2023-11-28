@@ -1,0 +1,8 @@
+@import '../../../assets/scss/variables.scss';
+
+.validator-message {
+    width: 100%;
+    font-size: 12px;
+    color: $inputErrorColor;
+    text-align: center;
+}
