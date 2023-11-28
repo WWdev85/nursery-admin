@@ -22,6 +22,8 @@ jobs:
         with:
                 repository: 'WWdev85/nursery-api'
                 path: 'nursery-api'
+      - name: List directory structure
+        run: ls -R
       - name: Check paths
         run: |
               pwd
