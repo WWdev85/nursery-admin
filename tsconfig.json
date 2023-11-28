@@ -2,11 +2,6 @@
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
-    "paths": {
-      "types": [
-        "../nursery-api/types"
-      ]
-    },
     "lib": [
       "dom",
       "dom.iterable",
