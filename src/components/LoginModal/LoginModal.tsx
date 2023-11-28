@@ -23,8 +23,6 @@ export const LoginModal = (props: LoginModalProps) => {
     const loginModalClass = clsx('login-modal');
     const loginModaTitlelClass = clsx('login-modal__title');
 
-    console.log(logo)
-
     return (
         <>
             <Background className={loginBackgroundClass} image={backgroundImage} />

@@ -3,7 +3,7 @@ name: Deploy to Hosting on Push
 on:
   push:
     branches:
-      - login-view
+      - develop
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,17 +17,6 @@ jobs:
         run: npm install
       # - name: Run Tests
       #   run: npm test
-      - name: Checkout additional repository
-        uses: actions/checkout@v2
-        with:
-                repository: 'WWdev85/nursery-api'
-                path: 'nursery-api'
-      - name: List directory structure
-        run: ls -R
-      - name: Check paths
-        run: |
-              pwd
-              ls -l ./nursery-api/types
       - name: Build
         run: npm run build
       - name: Copy package.json to dist folder
