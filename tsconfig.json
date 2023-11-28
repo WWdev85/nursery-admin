@@ -23,6 +23,6 @@
   },
   "include": [
     "src",
-    "../nursery-api/types"
+    "types"
   ]
 }
