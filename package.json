@@ -23,10 +23,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app start",
-    "build": "react-app build",
-    "test": "react-app test",
-    "eject": "react-app eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
