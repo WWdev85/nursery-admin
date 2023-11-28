@@ -14,7 +14,7 @@ interface LoginModalProps {
 }
 
 export const LoginModal = (props: LoginModalProps) => {
-    const { settings, logo } = useContext(SettingsContext) || {}
+    const { logo } = useContext(SettingsContext) || {}
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     const { title, children, backgroundImage } = props;
