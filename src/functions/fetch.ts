@@ -19,3 +19,15 @@ export const post = async (url: string, data: Object) => {
     const response = await fetch(baseUrl + url, init);
     return await response.json()
 }
+
+export const get = async (url: string, data?: string) => {
+    init.method = Method.Get;
+    const response = await fetch(baseUrl + url, init);
+    return await response.json()
+}
+
+export const getFile = async (url: string) => {
+    init.method = Method.Get;
+    return await fetch(baseUrl + url, init);
+
+}
