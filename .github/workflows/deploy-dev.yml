@@ -17,6 +17,10 @@ jobs:
         run: npm install
       # - name: Run Tests
       #   run: npm test
+      - name: Check paths
+        run: |
+              pwd
+              ls -l ./nursery-api/types
       - name: Build
         run: npm run build
       - name: Copy package.json to dist folder
