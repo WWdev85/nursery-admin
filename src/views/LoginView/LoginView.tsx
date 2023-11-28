@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa6";
-import { LoginResponse, RegexPattern } from '../../../../nursery-api/types'
+import { LoginResponse, RegexPattern } from '../../types';
 import { Alert, AlertType, Button, Form, Input, InputType, LoginModal } from "../../components"
 import './LoginView.scss'
 import background from '../../assets/images/background3.png'
@@ -67,7 +67,5 @@ export const LoginView = () => {
 
             </LoginModal>
         </div>
-
-        //<div>LoginView</div>
     );
 };

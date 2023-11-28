@@ -1,7 +1,7 @@
 import React from "react";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import clsx from "clsx";
-import { RegexPattern } from "types";
+import { RegexPattern } from "../../../types";
 import './Input.scss'
 import { ValidatorMesage } from "../ValidatorMessage";
 import { validate } from "../../../functions";

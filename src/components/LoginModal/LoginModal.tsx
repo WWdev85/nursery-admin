@@ -14,7 +14,7 @@ interface LoginModalProps {
 }
 
 export const LoginModal = (props: LoginModalProps) => {
-    const { settings, logo } = useContext(SettingsContext) || {}
+    const { logo } = useContext(SettingsContext) || {}
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     const { title, children, backgroundImage } = props;
@@ -22,8 +22,6 @@ export const LoginModal = (props: LoginModalProps) => {
     const loginBackgroundClass = clsx('login-background');
     const loginModalClass = clsx('login-modal');
     const loginModaTitlelClass = clsx('login-modal__title');
-
-    console.log(logo)
 
     return (
         <>
