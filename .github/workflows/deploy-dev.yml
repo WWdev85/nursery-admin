@@ -3,7 +3,7 @@ name: Deploy to Hosting on Push
 on:
   push:
     branches:
-      - develop
+      - login-view
 jobs:
   deploy:
     runs-on: ubuntu-latest
