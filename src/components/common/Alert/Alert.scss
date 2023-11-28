@@ -16,7 +16,9 @@
         padding: 0 10px;
     }
 
-    &__message {}
+    &__message {
+        color: $textColor;
+    }
 
 }
 

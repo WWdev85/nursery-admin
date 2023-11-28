@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { get, getFile } from "../functions/fetch";
-import { GetSettingsResponse } from 'types';
+import { GetSettingsResponse } from '../../../nursery-api/types';
 
 export type SettingsContextType = {
     settings: GetSettingsResponse;
