@@ -32,9 +32,6 @@ export const Alert = (props: AlertProps) => {
                 break;
         }
     }, [type])
-
-    console.log(icon)
-
     return (
         <div className={`alert ${className} ${type}`}>
             {icon}
