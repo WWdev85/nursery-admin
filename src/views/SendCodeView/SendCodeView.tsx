@@ -28,7 +28,6 @@ export const SendCodeView = () => {
     };
 
     const handleSubmit = async () => {
-        console.log("handleSubmit")
         const response = await post('/admin/send-code', {
             email,
         })

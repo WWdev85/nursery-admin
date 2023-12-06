@@ -38,10 +38,9 @@ export const LoginView = () => {
     };
 
     const handleSubmit = async () => {
-
         const response = await post('/auth/login', {
-            email: email,
-            password: password,
+            email,
+            password,
         })
         if (response === LoginResponse.Success) {
             navigate('/');
