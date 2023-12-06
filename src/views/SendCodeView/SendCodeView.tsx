@@ -28,7 +28,7 @@ export const SendCodeView = () => {
     };
 
     const handleSubmit = async () => {
-
+        console.log("handleSubmit")
         const response = await post('/admin/send-code', {
             email,
         })
@@ -47,7 +47,7 @@ export const SendCodeView = () => {
                 {alert}
                 <Form className={'login__form login-form'} onSubmitFn={handleSubmit}>
                     <Input className='login-form__input' type={InputType.Email} placeholder={'E-mail'} value={email} validationRegex={RegexPattern.Email} icon={emailIcon} validationErrorMessage={'nieprawidłowy adres e-mail'} onChangeFn={handleChangeEmail} />
-                    <Button className={'login-form__button'} disabled={isButtonDisabled} type={'submit'} text={'WYŚLIJ KOD'} onClickFn={handleSubmit} />
+                    <Button className={'login-form__button'} disabled={isButtonDisabled} type={'submit'} text={'WYŚLIJ KOD'} />
                 </Form>
                 <p className={'login__link'}>Przejdź do ekranu <Link to='/login' className={'link'}>logowania</Link></p>
             </LoginModal>
