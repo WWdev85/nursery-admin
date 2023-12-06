@@ -32,11 +32,13 @@ export const SendCodeView = () => {
         const response = await post('/admin/send-code', {
             email,
         })
+
         if (response === SendCodeResponse.Success) {
             navigate('/change-pwd');
         }
         if (response === SendCodeResponse.NotFound) {
             setAlert(<Alert message={"Podany e-mail nie istnieje w naszej bazie danych"} className={'incorrect-login-data'} type={AlertType.Error} />)
+
         }
     };
     return (
