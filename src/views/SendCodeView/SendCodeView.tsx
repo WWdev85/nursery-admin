@@ -7,8 +7,6 @@ import './SendCodeView.scss'
 import background from '../../assets/images/background3.png'
 import { post, validate } from '../../functions';
 
-
-
 export const SendCodeView = () => {
     const [email, setEmail] = useState<string>("");
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
@@ -25,7 +23,6 @@ export const SendCodeView = () => {
         }
     }, [email]);
 
-
     const handleChangeEmail = (value: string) => {
         setEmail(value);
     };
@@ -33,7 +30,7 @@ export const SendCodeView = () => {
     const handleSubmit = async () => {
 
         const response = await post('/admin/send-code', {
-            email: email,
+            email,
         })
         if (response === SendCodeResponse.Success) {
             navigate('/change-pwd');
@@ -50,8 +47,7 @@ export const SendCodeView = () => {
                     <Input className='login-form__input' type={InputType.Email} placeholder={'E-mail'} value={email} validationRegex={RegexPattern.Email} icon={emailIcon} validationErrorMessage={'nieprawidłowy adres e-mail'} onChangeFn={handleChangeEmail} />
                     <Button className={'login-form__button'} disabled={isButtonDisabled} type={'submit'} text={'WYŚLIJ KOD'} onClickFn={handleSubmit} />
                 </Form>
-                <p className={"login__link"}>Przejdź do ekranu <Link to="/login" className={"link"}>logowania</Link></p>
-
+                <p className={'login__link'}>Przejdź do ekranu <Link to='/login' className={'link'}>logowania</Link></p>
             </LoginModal>
         </div>
     );
