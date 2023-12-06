@@ -35,11 +35,13 @@ export const SendCodeView = () => {
         const response = await post('/admin/send-code', {
             email: email,
         })
+
         if (response === SendCodeResponse.Success) {
             navigate('/change-pwd');
         }
         if (response === SendCodeResponse.NotFound) {
             setAlert(<Alert message={"Podany e-mail nie istnieje w naszej bazie danych"} className={'incorrect-login-data'} type={AlertType.Error} />)
+
         }
     };
     return (
@@ -51,7 +53,6 @@ export const SendCodeView = () => {
                     <Button className={'login-form__button'} disabled={isButtonDisabled} type={'submit'} text={'WYŚLIJ KOD'} onClickFn={handleSubmit} />
                 </Form>
                 <p className={"login__link"}>Przejdź do ekranu <Link to="/login" className={"link"}>logowania</Link></p>
-
             </LoginModal>
         </div>
     );
