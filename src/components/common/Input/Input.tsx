@@ -26,11 +26,12 @@ interface InputProps {
     onChangeFn: Function,
     validationErrorMessage?: string,
     label?: string,
+    disabled?: boolean,
 
 }
 
 export const Input = (props: InputProps) => {
-    const { className, type, value, placeholder, label, validationRegex, icon, onChangeFn, validationErrorMessage } = props;
+    const { className, type, value, placeholder, label, validationRegex, icon, onChangeFn, validationErrorMessage, disabled } = props;
 
     const [isCorrect, setIsCorrect] = useState<boolean>(true)
 
@@ -57,7 +58,7 @@ export const Input = (props: InputProps) => {
             {label && <label className={'input__label'}>{label}</label>}
             <div className={inputFieldClass}>
                 {iconWithClass}
-                <input className={'field__content'} type={type} value={value} placeholder={placeholder} onChange={handleChange} />
+                <input className={'field__content'} type={type} value={value} placeholder={placeholder} onChange={handleChange} disabled={disabled} />
             </div>
             {!isCorrect && validationErrorMessage && <ValidatorMesage className={'input__validation-error'} message={validationErrorMessage} />}
         </div>
