@@ -1,0 +1,14 @@
+@import '../../../assets/scss/variables.scss';
+
+.icon {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+
+    svg {
+        color: $iconColor;
+        height: 100%;
+        width: 100%;
+    }
+
+}
