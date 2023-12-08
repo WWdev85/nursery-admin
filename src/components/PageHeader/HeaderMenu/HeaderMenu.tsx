@@ -28,7 +28,7 @@ export const HeaderMenu = (props: HeaderMenuProps) => {
     const toolsClass = clsx('header-menu__tools tools', { 'tools--opened': isToolsOpen })
 
     useEffect(() => {
-
+        console.log(admin)
         if (admin) {
             console.log(admin)
             getAdminPhoto(admin.id)

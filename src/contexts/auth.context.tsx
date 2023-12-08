@@ -1,11 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { AdminRole } from '../types'
 import { validateAuthToken } from "../functions";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export type AuthContextType = {
-    admin: Admin | null
-    isAdminLogged: boolean,
+    admin: Admin | undefined,
 }
 
 interface Admin {
@@ -18,31 +17,39 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 type Props = { children: JSX.Element };
 
 export const AuthContextProvider = ({ children }: Props) => {
-    const [admin, setAdmin] = useState<Admin | null>(null)
-    const [isAdminLogged, setIsAdminLogged] = useState<boolean>(false)
+    const [admin, setAdmin] = useState<Admin | undefined>()
     const navigate = useNavigate();
+    let location = useLocation();
+
+
+
 
     useEffect(() => {
+        const path = location.pathname
+
         const getAdminData = async () => {
-            const admin = await validateAuthToken()
-            if (admin) {
-                setAdmin(() => admin as Admin)
-                setIsAdminLogged(true)
-            } else {
-                setAdmin(() => null)
-                setIsAdminLogged(() => false)
+            const response = await validateAuthToken()
+            console.log(admin)
+            if (!response) {
                 navigate('/login');
+            } else {
+                if (!admin) {
+                    setAdmin(response as Admin)
+                }
             }
         }
-        getAdminData()
+        if (path !== '/login' && path !== '/reset-pwd' && !path.includes('change-pwd/')) {
+            getAdminData()
+        }
     }, [navigate])
 
     return (
         <AuthContext.Provider value={{
             admin: admin,
-            isAdminLogged: isAdminLogged,
         }}>
             {children}
         </AuthContext.Provider>
     );
 }
+
+export const useAuth = () => useContext(AuthContext);

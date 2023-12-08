@@ -18,7 +18,6 @@ export const Icon = (props: IconProps) => {
         }
     }
 
-
     return (
         <div className={iconlass} onClick={handleClick}>
             {icon}
