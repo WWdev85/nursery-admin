@@ -10,12 +10,7 @@ function App() {
     <SettingsContextProvider>
       <BrowserRouter>
         <AuthContextProvider>
-          <Routes>
-            <Route path='/login' element={<LoginView />} />
-            <Route path='/reset-pwd' element={<SendCodeView />} />
-            <Route path='/change-pwd/:id/:code' element={<ChangePwdView />} />
-            <Route path='/' element={<Main />} />
-          </Routes>
+          <Main />
         </AuthContextProvider>
       </BrowserRouter>
     </SettingsContextProvider>
