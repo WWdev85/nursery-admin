@@ -55,7 +55,7 @@ export const SendCodeView = () => {
                 setIsCodeRecieved(true);
             }
             if (response === SendCodeResponse.NotFound) {
-                setAlert(<Alert message={"Podany e-mail nie istnieje w naszej bazie danych"} className={'incorrect-login-data'} type={AlertType.Error} />)
+                setAlert(<Alert message={'Podany e-mail nie istnieje w naszej bazie danych'} className={'incorrect-login-data'} type={AlertType.Error} />)
             }
         }
 

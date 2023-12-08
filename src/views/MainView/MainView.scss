@@ -1,0 +1,56 @@
+@import '../../assets/scss/variables.scss';
+
+.main-view {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page-header {
+    height: 70px;
+    flex-basis: 100%;
+}
+
+.page-navbar {
+    flex-basis: 270px;
+    height: calc(100vh - 70px);
+    border-right: 1px solid $borerColor;
+    transition: transform 1s linear;
+}
+
+.page-content {
+    flex-basis: calc(100% - 270px);
+    height: calc(100vh - 70px);
+    background-color: #EEE;
+}
+
+@media(max-width: 1000px) {
+    .main-view {
+        position: relative;
+    }
+
+    .page-header {
+        height: 70px;
+        flex-basis: 100%;
+        bottom: 0;
+    }
+
+    .page-navbar {
+        position: absolute;
+        top: 70px;
+        transform: translateX(-100%);
+        width: 270px;
+        background-color: white;
+
+        &--opened {
+            transform: translateX(0);
+        }
+
+
+    }
+
+    .page-content {
+        flex-basis: 100%;
+        height: calc(100vh - 70px);
+        background-color: #EEE;
+    }
+}
