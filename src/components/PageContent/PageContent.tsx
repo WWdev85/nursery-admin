@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ChangePwdView, LoginView, SendCodeView, StaffMembers } from '../..//views';
 import './PageContent.scss';
-import { AuthContextProvider } from '../..//contexts';
+
 
 export const PageContent = () => {
     return (

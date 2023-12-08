@@ -21,27 +21,25 @@ export const AuthContextProvider = ({ children }: Props) => {
     const navigate = useNavigate();
     let location = useLocation();
 
-
-
-
     useEffect(() => {
         const path = location.pathname
 
         const getAdminData = async () => {
             const response = await validateAuthToken()
-            console.log(admin)
             if (!response) {
                 navigate('/login');
             } else {
-                if (!admin) {
-                    setAdmin(response as Admin)
-                }
+                setAdmin(response as Admin)
             }
         }
         if (path !== '/login' && path !== '/reset-pwd' && !path.includes('change-pwd/')) {
             getAdminData()
         }
-    }, [navigate])
+    }, [navigate, location])
+
+    useEffect(() => {
+
+    })
 
     return (
         <AuthContext.Provider value={{
