@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { AdminRole } from 'types'
+import { AdminRole } from '../types'
 import { validateAuthToken } from "../functions";
 import { useNavigate } from "react-router-dom";
 
