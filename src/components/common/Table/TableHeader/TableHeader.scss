@@ -1,0 +1,32 @@
+@import '../../../../assets/scss/variables.scss';
+
+.table-header {
+    text-align: left;
+    padding: 10px;
+    height: 40px;
+    border: 1px solid $tableBorderColor;
+    cursor: pointer;
+    position: relative;
+
+    &__icon {
+        display: inline-block;
+        transform: translateY(5px);
+        padding-left: 10px;
+
+        svg {
+            color: $tableBorderColor;
+        }
+
+        &--ascending {
+            svg {
+                color: $successColor;
+            }
+        }
+
+        &--descending {
+            svg {
+                color: $errorColor;
+            }
+        }
+    }
+}

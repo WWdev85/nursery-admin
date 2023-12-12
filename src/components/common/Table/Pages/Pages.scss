@@ -1,0 +1,29 @@
+@import '../../../../assets/scss/variables.scss';
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    &__page {
+        width: 38px;
+        height: 38px;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &--active {
+            background-color: $tableBorderColor;
+            border-radius: 5px;
+        }
+
+        &--inactive {
+            cursor: auto;
+        }
+    }
+
+    &__button {}
+}

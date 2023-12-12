@@ -29,7 +29,6 @@ export const get = async (url: string) => {
         },
     };
     init.method = Method.Get;
-    console.log(baseUrl + url);
     const response = await fetch(baseUrl + url, init);
     return await response.json()
 }

@@ -5,3 +5,8 @@ export * from './ValidatorMessage';
 export * from './Button';
 export * from './Alert';
 export * from './Icon';
+export * from './Header';
+export * from './Table';
+export * from './ContentWrapper';
+export * from './Select';
+export * from './IconButton';

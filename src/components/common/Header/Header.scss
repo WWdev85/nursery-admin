@@ -1,0 +1,10 @@
+@import '../../../assets/scss/variables.scss';
+
+.header {
+
+    &__title {
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+    }
+}
