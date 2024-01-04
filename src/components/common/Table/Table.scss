@@ -1,0 +1,60 @@
+@import '../../../assets/scss/variables.scss';
+
+.table-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__container {
+        position: relative;
+    }
+
+    &__search {
+        width: 300px;
+        margin-bottom: 20px;
+        align-self: self-end;
+    }
+
+    &__select {
+
+        align-self: flex-end;
+    }
+
+    &__pages {}
+}
+
+.table {
+    border: 1px solid $tableBorderColor;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 25px;
+    margin-bottom: 20px;
+
+
+
+    .table-data {
+        border: 1px solid $tableBorderColor;
+        padding: 10px;
+        height: 50px;
+
+        &__actions {
+            display: flex;
+
+            align-items: center;
+        }
+    }
+}
+
+.actions {
+    &__button {
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        &--trash {
+            background-color: $errorColor !important;
+        }
+    }
+}

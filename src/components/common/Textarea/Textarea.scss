@@ -1,0 +1,17 @@
+@import '../../../assets/scss/variables.scss';
+
+.textarea {
+
+    &__content {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        color: $textColor;
+        outline: none;
+
+        &:focus {
+            background-color: #eeeeee;
+        }
+    }
+}

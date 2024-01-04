@@ -4,19 +4,47 @@
 
     width: 100%;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
 
     &__label {
         display: block;
         margin-bottom: 5px;
         font-size: 12px;
+        flex-basis: 100%;
+        max-height: 15px;
     }
 
     &__field {
-
+        max-height: 38px;
         height: 38px;
         width: 100%;
         border: 1px solid $inputColor;
         border-radius: 5px;
+    }
+
+    &__photo {
+        width: 100px;
+        height: 100px;
+        background-color: white;
+        border: 1px solid $inputColor;
+        border-radius: 5px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &__file-button {
+        // margin-left: 30px;
+        // max-width: 50%;
+        position: absolute;
+        left: 120px;
+        bottom: 5px;
+        width: 150px !important;
+        min-width: none !important;
+        height: 35px;
     }
 }
 
@@ -47,6 +75,22 @@
         &:focus {
             background-color: #eeeeee;
         }
+
+        &--file {
+            display: none;
+            margin-top: 15px;
+            border: none !important;
+            outline: none !important;
+        }
+
+        &--file-button {
+            display: none;
+            margin-top: 15px;
+            border: none;
+            outline: none !important;
+        }
+
+
     }
 
 
@@ -54,6 +98,7 @@
 
 .field--validation-error {
     border-color: $inputErrorColor;
+    flex-grow: 1;
 
     .field__icon {
         border-right: 1px solid $inputErrorColor;
@@ -64,4 +109,11 @@
     .field__content {
         padding-left: 48px;
     }
+}
+
+.field--file {
+    height: 0;
+    width: 0;
+
+
 }

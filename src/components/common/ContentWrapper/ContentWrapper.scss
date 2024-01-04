@@ -1,0 +1,15 @@
+.content-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+
+
+    &__add-button {
+        margin-top: 40px;
+        width: 200px;
+        align-self: flex-start;
+        margin-bottom: 40px;
+    }
+}
