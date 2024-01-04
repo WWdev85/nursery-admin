@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Order } from "../../../types";
+import { SelectOption } from "../Select";
 
 interface Item {
     [key: string]: any;

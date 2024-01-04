@@ -1,0 +1,39 @@
+.change-pwd {
+    margin-top: 50px;
+}
+
+.change-pwd-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &__input {
+        width: 32%;
+    }
+
+    &__button {
+        width: 33%;
+        margin-top: 20px;
+        justify-self: center;
+    }
+}
+
+
+@media(max-width: 640px) {
+    .change-pwd-form {
+
+        &__input {
+            flex-basis: 100%;
+        }
+
+        &__select {
+            flex-basis: 100%;
+        }
+
+        &__button {
+
+            flex-basis: 100%;
+
+        }
+    }
+}

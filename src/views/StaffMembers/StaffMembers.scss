@@ -1,0 +1,23 @@
+.staff {
+
+    &__wrapper {
+        overflow: auto;
+    }
+}
+
+.staff-table {
+    min-width: 1100px;
+}
+
+.create-modal {
+    .container {
+        max-width: 1000px;
+        width: 90%;
+    }
+}
+
+.delete-modal {
+    .container {
+        width: 400px;
+    }
+}

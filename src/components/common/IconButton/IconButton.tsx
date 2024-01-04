@@ -7,16 +7,17 @@ interface IconButtonProps {
     icon: ReactNode;
     onClickFn?: Function;
     disabled?: boolean;
+    id?: string;
 }
 
 export const IconButton = (props: IconButtonProps) => {
-    const { icon, className, onClickFn, disabled } = props;
+    const { icon, className, onClickFn, disabled, id } = props;
 
     const iconButtonClass = clsx(`${className} icon-button`)
 
     const handleClick = () => {
         if (onClickFn) {
-            onClickFn();
+            onClickFn(id);
         }
     }
 

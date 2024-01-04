@@ -19,6 +19,7 @@
 
 .page-content {
     flex-basis: calc(100% - 270px);
+    max-width: calc(100% - 270px);
     height: calc(100vh - 70px);
     background-color: #EEE;
 }
@@ -40,6 +41,7 @@
         transform: translateX(-100%);
         width: 270px;
         background-color: white;
+        z-index: 1;
 
         &--opened {
             transform: translateX(0);
@@ -50,6 +52,7 @@
 
     .page-content {
         flex-basis: 100%;
+        max-width: 100%;
         height: calc(100vh - 70px);
         background-color: #EEE;
     }

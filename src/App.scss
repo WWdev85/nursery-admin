@@ -6,12 +6,20 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #f0f0f5;
+}
+
 body {
   box-sizing: border-box;
   font-family: $primaryFont;
   margin: 0;
   padding: 0;
   color: $textColor;
+  max-width: 1920px;
+  margin: 0 auto;
+  box-shadow: 0 5px 0 0 hsla(212, 8%, 45%, .3), 0 5px 25px 0 hsla(212, 8%, 45%, .3);
+  overflow: hidden;
 }
 
 a {
@@ -26,4 +34,5 @@ a {
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  max-width: 1920px;
 }

@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 import './Table.scss';
 import { get } from '../../../functions';
 import { Order } from '../../../types';
 import { TableHeader } from './TableHeader';
 import { TableActionType, TableState, tableReducer } from './TableReducer';
 import { Input, InputType } from '../Input';
-import { Selection, SelectOption } from '../Select';
+import { Select, SelectOption } from '../Select';
 import { Pages } from './Pages';
 import { IconButton } from '../IconButton';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { Loader } from '../../Loader';
 
 export interface Column {
     title: string;
@@ -17,15 +18,16 @@ export interface Column {
 }
 
 interface TableProps {
+    className?: string;
     sourceUrl: string;
     columns: Column[];
     actions: boolean;
     orderBy: string;
+    editItemFn?: Function;
+    deleteItemFn?: Function;
 }
 
 const limitOptions: SelectOption[] = [
-    { value: 1, label: '1' },
-    { value: 2, label: '2' },
     { value: 10, label: '10' },
     { value: 25, label: '25' },
     { value: 50, label: '50' },
@@ -33,10 +35,10 @@ const limitOptions: SelectOption[] = [
 ]
 
 export const Table = (props: TableProps) => {
-    const { sourceUrl, columns, actions, orderBy } = props;
+    const { className, sourceUrl, columns, actions, orderBy, editItemFn, deleteItemFn } = props;
 
     const initialState: TableState = {
-        limit: limitOptions[0].value,
+        limit: limitOptions[0].value as number,
         currentPage: 1,
         totalPages: 1,
         totalItems: 0,
@@ -50,14 +52,17 @@ export const Table = (props: TableProps) => {
     };
 
     const [state, dispatch] = useReducer(tableReducer, initialState);
+    const [isLoading, setIsLodaing] = useState<boolean>(true)
 
     const getItems = useCallback(async () => {
+        setIsLodaing(true)
         const response = await get(`${sourceUrl}?page=${state.currentPage}&limit=${state.limit}&orderBy=${state.orderBy}&order=${state.order}&search=${state.search}`);
 
         dispatch({
             type: TableActionType.SetItems,
             payload: { items: response.items, totalItems: response.totalItems, totalPages: response.totalPages }
         });
+        setIsLodaing(false)
 
     }, [sourceUrl, state.limit, state.order, state.search, state.currentPage, state.orderBy])
 
@@ -87,8 +92,8 @@ export const Table = (props: TableProps) => {
                     })}
                     <td className='table-data' key={'actions' + index}>
                         <div className='table-data__actions actions'>
-                            <IconButton className={'actions__button'} icon={<FaEdit />} />
-                            <IconButton className={'actions__button actions__button--trash'} icon={<FaTrashAlt />} />
+                            <IconButton className={'actions__button'} icon={<FaEdit />} id={item.id} onClickFn={editItemFn} />
+                            <IconButton className={'actions__button actions__button--trash'} icon={<FaTrashAlt />} id={item.id} onClickFn={deleteItemFn} />
                         </div>
                     </td>
                 </tr>
@@ -99,10 +104,9 @@ export const Table = (props: TableProps) => {
             type: TableActionType.SetRows,
             payload: rows
         })
-    }, [columns, state.items, state.currentPage, state.limit])
+    }, [columns, state.items, state.currentPage, state.limit, editItemFn, deleteItemFn])
 
     const handleChangeOrdeBy = useCallback((key: string) => {
-        console.log(key, state.orderBy);
         if (state.orderBy === key) {
             dispatch({
                 type: TableActionType.SetOrder,
@@ -165,10 +169,10 @@ export const Table = (props: TableProps) => {
         })
     }
 
-    const handleChangeLimit = (value: number) => {
+    const handleChangeLimit = (option: SelectOption) => {
         dispatch({
             type: TableActionType.SetLimit,
-            payload: value
+            payload: option.value as number
         })
     }
 
@@ -180,23 +184,29 @@ export const Table = (props: TableProps) => {
     }
 
     return (
-        <div className='table-wrapper'>
-            <Input className={'table-wrapper__search'} type={InputType.Text} value={state.search} placeholder='wyszukaj' onChangeFn={handleChangeCurrentPage}></Input>
-            <table className='table'>
-                <colgroup>
-                    {state.columnsWidths}
-                </colgroup>
-                <thead>
-                    <tr>
-                        {state.headers}
-                    </tr>
-                </thead>
-                <tbody>
-                    {state.rows}
-                </tbody>
-            </table>
+        <div className={className + 'table-wrapper'}>
+
+            <Input className={'table-wrapper__search'} type={InputType.Text} value={state.search} placeholder='wyszukaj' onChangeFn={handleChangeSearch}></Input>
+            <div className='table-wrapper__container'>
+                {isLoading && <Loader />}
+                <table className='table'>
+
+                    <colgroup>
+                        {state.columnsWidths}
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            {state.headers}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {state.rows}
+                    </tbody>
+                </table>
+            </div>
+
             {state.totalPages > 1 && <Pages className='table-wrapper__pages' currentPage={state.currentPage} totalPages={state.totalPages} onChangeFn={handleChangeCurrentPage} />}
-            <Selection className='table-wrapper__select' options={limitOptions} selected={state.limit} onChangeFn={handleChangeLimit} />
+            <Select className='table-wrapper__select' options={limitOptions} selected={state.limit} onChangeFn={handleChangeLimit} />
 
         </div >
     )

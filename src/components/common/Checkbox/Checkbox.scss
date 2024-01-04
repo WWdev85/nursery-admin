@@ -1,0 +1,53 @@
+@import '../../../assets/scss/variables.scss';
+
+.checkbox {
+
+    width: 100%;
+    align-self: center;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 0 15px;
+
+    &__label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__input:checked+&__text:after {
+        content: "\2713";
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $inputColor;
+
+    }
+
+    &__text {
+        display: flex !important;
+        align-items: center;
+        height: 38px;
+        position: relative;
+        padding-left: 35px;
+        display: block;
+        cursor: pointer;
+    }
+
+    &__text:before {
+        height: 38px;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border: 1px solid $inputColor;
+        background-color: #fff;
+    }
+}

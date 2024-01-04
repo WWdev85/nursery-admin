@@ -10,3 +10,7 @@ export * from './Table';
 export * from './ContentWrapper';
 export * from './Select';
 export * from './IconButton';
+export * from './Modal';
+export * from './ConfirmDelete';
+export * from './Checkbox';
+export * from './Textarea';

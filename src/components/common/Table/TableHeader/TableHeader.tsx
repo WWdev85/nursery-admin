@@ -34,8 +34,11 @@ export const TableHeader = (props: TableHeaderProps) => {
     }
     return (
         <th className='table-header' onClick={handleClick}>
-            {title}
-            {headerKey && <Icon className={iconClass} icon={icon} />}
+            <div className="table-header__wrapper">
+                {title}
+                {headerKey && <Icon className={iconClass} icon={icon} />}
+            </div>
+
         </th>
     )
 }

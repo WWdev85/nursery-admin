@@ -8,10 +8,15 @@
     cursor: pointer;
     position: relative;
 
+    &__wrapper {
+        display: flex;
+        align-items: center;
+    }
+
     &__icon {
-        display: inline-block;
-        transform: translateY(5px);
+        display: block;
         padding-left: 10px;
+        width: 30px;
 
         svg {
             color: $tableBorderColor;

@@ -6,6 +6,10 @@
     flex-direction: column;
     align-items: center;
 
+    &__container {
+        position: relative;
+    }
+
     &__search {
         width: 300px;
         margin-bottom: 20px;
@@ -28,10 +32,11 @@
     margin-bottom: 20px;
 
 
+
     .table-data {
         border: 1px solid $tableBorderColor;
         padding: 10px;
-        height: 60px;
+        height: 50px;
 
         &__actions {
             display: flex;
