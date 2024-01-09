@@ -65,11 +65,9 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
             setDescription(stafMember.description);
             setAddress(stafMember.address);
             setImageSrc(() => photo.url);
-            console.log(photo.ok);
             if (photo.ok) {
 
             } else {
-                console.log("sadsadasd")
                 setIsLoading(() => false)
             }
 
@@ -191,7 +189,6 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
                 staff,
                 file,
             )
-            console.log(response.message)
             if (response === CreateStaffResponse.Success) {
                 setAlert(() => <Alert message={"Nowy pracownik został zapisany."} className={""} type={AlertType.Success} />)
                 if (onSubmitFn) {

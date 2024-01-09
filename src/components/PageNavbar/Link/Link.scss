@@ -1,0 +1,30 @@
+@import '../../../assets/scss/variables.scss';
+
+.navbar-link {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: lighten($textColor, 20%);
+    cursor: pointer;
+
+    &:hover {
+        background-color: #eee;
+    }
+
+    &__icon {
+
+        svg {
+            width: 20px;
+            height: 20px;
+
+        }
+    }
+
+    &__name {
+        margin-left: 10px;
+        font-size: 15px;
+        // letter-spacing: 1px;
+
+    }
+}
