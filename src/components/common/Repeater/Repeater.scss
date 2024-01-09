@@ -1,0 +1,66 @@
+@import '../../../assets/scss/variables.scss';
+
+.repeater {
+    display: flex;
+    flex-direction: column;
+
+    &__component-wrapper {
+        display: flex;
+        border: 1px solid $inputColor;
+        margin-bottom: 20px;
+
+    }
+
+    &__add-button {
+        width: 100px;
+        margin-bottom: 50px;
+        order: 100000;
+    }
+
+    &__save-button {
+        width: 100px;
+        margin-bottom: 50px;
+        order: 100000;
+    }
+}
+
+.component-wrapper {
+    display: flex;
+
+
+    &__icon {
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primaryColor;
+        width: 58px;
+
+        .icon {
+            width: 35px;
+            height: 30px;
+            cursor: inherit;
+
+            svg {
+                color: white;
+            }
+
+        }
+
+    }
+
+    &__content {
+        padding: 5px 10px;
+        flex-grow: 1;
+
+    }
+}
+
+.draggable {
+    cursor: grab;
+}
+
+.invisible {
+    opacity: 1%;
+    cursor: grab;
+}

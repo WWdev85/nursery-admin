@@ -41,7 +41,7 @@ export const ChangePwd = (props: ChangePwdProps) => {
                 newPassword: newPassword
             })
         if (response === UpdatePasswordResponse.Success) {
-            setAlert(() => <Alert message={"Hasło zostało zmienione"} className={""} type={AlertType.Success} />)
+            setAlert(() => <Alert message={"Hasło zostało zmienione."} className={""} type={AlertType.Success} />)
             clearPasswordInputs()
             if (onSubmitFn) {
                 onSubmitFn()

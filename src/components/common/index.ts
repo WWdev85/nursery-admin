@@ -14,3 +14,4 @@ export * from './Modal';
 export * from './ConfirmDelete';
 export * from './Checkbox';
 export * from './Textarea';
+export * from './Repeater';
