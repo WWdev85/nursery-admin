@@ -1,0 +1,9 @@
+.subject {
+    display: flex;
+    align-items: flex-start;
+
+    &__name {
+        margin: 5px 0;
+
+    }
+}

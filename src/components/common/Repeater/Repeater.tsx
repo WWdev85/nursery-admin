@@ -23,7 +23,7 @@ interface RepeaterProps<T> {
 
 
 
-export const Repeater = <T extends { flag?: RepeaterItemFlag, order: string, id: string }>(props: RepeaterProps<T>) => {
+export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id: string }>(props: RepeaterProps<T>) => {
 
 
     const { className, draggable, componentType: Component, createElementFn, sourceUrl, createFn, updateFn, deleteFn } = props
@@ -122,7 +122,7 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order: string, id:
                 items.map((item, index) => {
                     if (item.flag !== RepeaterItemFlag.Deleted) {
                         return (
-                            <div key={index} className='repeater__component-wrapper component-wrapper' draggable onDragEnd={onDragEnd} onDragStart={(event) => onDragStart(event)} onDragEnter={(event) => onDragEnter(event, index)} style={{ order: `${item.order}` }} >
+                            <div key={index} className='repeater__component-wrapper component-wrapper' draggable={draggable} onDragEnd={onDragEnd} onDragStart={(event) => onDragStart(event)} onDragEnter={(event) => onDragEnter(event, index)} style={{ order: `${item.order}` }} >
                                 <div className={`component-wrapper__icon ${draggable ? 'draggable' : ''}`}>
                                     <Icon icon={<FaAlignJustify />} />
                                 </div>

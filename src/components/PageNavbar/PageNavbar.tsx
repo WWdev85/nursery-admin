@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import './PageNavbar.scss';
 import { Link } from 'react-router-dom';
 import { NavbarLink } from './Link';
-import { FaBriefcase, FaBuildingUser, FaHouse } from "react-icons/fa6";
+import { FaBook, FaBriefcase, FaBuildingUser, FaHouse } from "react-icons/fa6";
 
 
 interface PageNavbarProps {
@@ -19,6 +19,7 @@ export const PageNavbar = (props: PageNavbarProps) => {
             <Link to={'/'}><NavbarLink icon={<FaHouse />} name={"Dashboard"} /></Link>
             <Link to={'/staff'}><NavbarLink icon={<FaBuildingUser />} name={"Pracownicy"} /></Link>
             <Link to={'/roles'}><NavbarLink icon={<FaBriefcase />} name={"Role"} /></Link>
+            <Link to={'/subjects'}><NavbarLink icon={<FaBook />} name={"Przedmioty"} /></Link>
         </section>
     )
 }
