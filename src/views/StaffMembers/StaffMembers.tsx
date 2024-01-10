@@ -48,6 +48,12 @@ export const StaffMembers = () => {
             key: "address",
             width: 400
         },
+        {
+            title: "Przedmioty",
+            key: "subjects",
+            width: 400,
+            sortable: false,
+        },
     ];
 
 
@@ -84,11 +90,6 @@ export const StaffMembers = () => {
 
     const changeTableKey = () => {
         setTableKey(() => tableKey + 1);
-
-        // setTimeout(() => {
-        //     handleCloseModal()
-        // }, 2000)
-
     }
 
 

@@ -15,6 +15,7 @@ export interface Column {
     title: string;
     key: string;
     width: number;
+    sortable?: boolean;
 }
 
 interface TableProps {
@@ -84,6 +85,10 @@ export const Table = (props: TableProps) => {
                         if (value === false) {
                             value = 'Nie';
                         }
+                        console.log(Array.isArray(value))
+                        if (Array.isArray(value)) {
+                            value = value.map((item) => item.name).join(',  ')
+                        }
                         return (
                             <td className='table-data' key={column.key}>
                                 {value}
@@ -122,7 +127,7 @@ export const Table = (props: TableProps) => {
 
     const setHeaders = useCallback(() => {
         const headers = columns.map((column) => {
-            return <TableHeader key={column.key} title={column.title} headerKey={!column.key.includes('.') ? column.key : column.key.split('.')[0]} onClickFn={handleChangeOrdeBy} order={state.order} orderBy={state.orderBy} />
+            return <TableHeader key={column.key} title={column.title} headerKey={!column.key.includes('.') ? column.key : column.key.split('.')[0]} onClickFn={handleChangeOrdeBy} order={state.order} orderBy={state.orderBy} sortable={column.sortable} />
         })
         if (actions) {
             headers.push(<TableHeader key={'actions'} title={'Akcje'} />)

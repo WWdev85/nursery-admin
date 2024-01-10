@@ -22,7 +22,6 @@ export const Roles = () => {
             name: role.name,
             order: role.order,
         })
-        console.log(response)
     }
 
     const handleUpdateRole = async (role: RoleInterface) => {
@@ -31,7 +30,6 @@ export const Roles = () => {
             name: role.name,
             order: role.order,
         })
-        console.log(response)
     }
 
     const handleDeleteRole = async (id: string) => {
