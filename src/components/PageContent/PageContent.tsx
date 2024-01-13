@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { ChangePwdView, LoginView, Roles, SendCodeView, StaffMembers } from '../..//views';
+import { ChangePwdView, LoginView, Roles, SendCodeView, StaffMembers, Subjects } from '../..//views';
 import './PageContent.scss';
 
 
@@ -14,6 +14,7 @@ export const PageContent = () => {
                 <Route path='/change-pwd/:id/:code' element={<ChangePwdView />} />
                 <Route path='/staff' element={<StaffMembers />} />
                 <Route path='/roles' element={<Roles />} />
+                <Route path='/subjects' element={<Subjects />} />
             </Routes>
 
 

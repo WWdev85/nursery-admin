@@ -90,6 +90,7 @@ export const StaffMembers = () => {
 
     const changeTableKey = () => {
         setTableKey(() => tableKey + 1);
+        setIsModalOpen(false)
     }
 
 

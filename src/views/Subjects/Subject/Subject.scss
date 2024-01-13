@@ -1,0 +1,22 @@
+.subject {
+    display: flex;
+    align-items: flex-start;
+
+    &__name {
+        margin: 5px 0;
+        flex-grow: 1;
+        flex-basis: 50%;
+        margin-right: 5px;
+    }
+
+    &__staff-members {
+        margin: 5px 0;
+        flex-grow: 1;
+        flex-basis: 50%;
+    }
+
+    &__delete {
+        flex-basis: 38px;
+    }
+
+}
