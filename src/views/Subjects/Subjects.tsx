@@ -1,9 +1,9 @@
 
 import { ContentWrapper, Repeater, RepeaterItemFlag } from '../../components';
 import './Subjects.scss';
-
 import { deleteItem, patch, post } from '../../functions';
 import { Subject, SubjectInterface, SubjectProps } from './Subject/Subject';
+
 
 
 export const Subjects = () => {
@@ -12,20 +12,23 @@ export const Subjects = () => {
         return {
             id: 'new',
             name: '',
+            staffIds: [],
             flag: RepeaterItemFlag.Updated
         }
     }
 
     const handleCreateSubject = async (subject: SubjectInterface) => {
-        const response = await post('/subject/add', {
+        await post('/subject/add', {
             name: subject.name,
+            staffIds: subject.staffIds.join(",")
         })
     }
 
     const handleUpdateSubject = async (subject: SubjectInterface) => {
-        const response = await patch('/subject/update', {
+        await patch('/subject/update', {
             id: subject.id,
             name: subject.name,
+            staffIds: subject.staffIds.join(",")
 
         })
     }

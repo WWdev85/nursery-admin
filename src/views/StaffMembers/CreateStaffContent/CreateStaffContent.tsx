@@ -29,9 +29,13 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
     const [descripton, setDescription] = useState<string>('');
     const [imageSrc, setImageSrc] = useState<string>("");
     const [photoFile, setPhotoFile] = useState<File | null>(null);
+    const [subjects, setSubjects] = useState<string[]>([]);
 
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
     const [alert, setAlert] = useState<ReactNode>(null)
+
+    const [roleOptions, setRoleOptions] = useState<SelectOption[]>([]);
+    const [subjectOptions, setSubjectptions] = useState<SelectOption[]>([]);
 
 
     useEffect(() => {
@@ -54,17 +58,30 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
 
     const getStaffMember = useCallback(async () => {
         if (id) {
-            const stafMember = await get(`/staff/get-one/${id}`);
+            const staffMember = await get(`/staff/get-one/${id}`);
             const photo = await getFile(`/staff/get-photo/${id}`);
-            setName(stafMember.name);
-            setSurname(stafMember.surname);
-            setEmail(stafMember.email);
-            setPhone(stafMember.phone)
-            setRole(stafMember.role.id);
-            setIsVisible(stafMember.isVisible);
-            setDescription(stafMember.description);
-            setAddress(stafMember.address);
+            setName(staffMember.name);
+            setSurname(staffMember.surname);
+            setEmail(staffMember.email);
+            setPhone(staffMember.phone)
+            setRole(staffMember.role.id);
+            setIsVisible(staffMember.isVisible);
+            setDescription(staffMember.description);
+            setAddress(staffMember.address);
+            setSubjects(staffMember.subjects.map((subject: any) => subject.id));
             setImageSrc(() => photo.url);
+            setSubjectptions(staffMember.subjects.map((subject: any) => {
+                return {
+                    value: subject.id,
+                    label: subject.name
+                }
+            }))
+            setRoleOptions([{
+                value: staffMember.role.id,
+                label: staffMember.role.name
+            }]
+
+            )
             if (photo.ok) {
 
             } else {
@@ -152,6 +169,10 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
         setDescription(description)
     }
 
+    const handleChanngeSubjects = (subjects: string[]) => {
+        setSubjects(subjects)
+    }
+
     const handleSubmit = async () => {
         const file = photoFile ? { label: 'photo', content: photoFile } : undefined
         const staff = {
@@ -163,6 +184,7 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
             roleId: role,
             description: descripton,
             isVisible: isVisible,
+            subjectIds: subjects.join(',')
         }
 
         if (id) {
@@ -224,10 +246,11 @@ export const CreateStaffForm = (props: CreateStaffFormProps) => {
             <Input className={"staff-form__input"} type={InputType.Text} value={address.houseNumber} label={'*Numer domu'} validationRegex={RegexPattern.HouseNumber} validationErrorMessage={'nieprawidłowy numer domu'} onChangeFn={handleChanageHouseNumber} />
             <Input className={"staff-form__input"} type={InputType.Text} value={address.postalCode} label={'*Kod pocztowy'} validationRegex={RegexPattern.UniversalPostalCode} validationErrorMessage={'nieprawidłowy kod pocztowy'} onChangeFn={handleChanagePostalCode} />
             <Input className={"staff-form__input"} type={InputType.Text} value={address.town} label={'*Miejscowość'} validationRegex={RegexPattern.Minimum2Characters} validationErrorMessage={'miejscowość musi składać się z minimum 2 znaków'} onChangeFn={handleChanageTown} />
-            <Select className={"staff-form__select"} selected={role} label="*Rola" searchInput={true} options={'/role/get-all'} onChangeFn={handleChangeRole} />
-            <Checkbox className={"staff-form__input"} label={'Widoczność'} text={"Widoczny na stronie."} onChangeFn={handleChanageIsVisible} checked={isVisible} />
+            <Select className={"staff-form__select"} selected={role} label="*Rola" searchInput={true} options={roleOptions} optionsUrl={'/role/get-all?page=1&limit=11'} onChangeFn={handleChangeRole} />
+            <Select className={"staff-form__select"} multi={true} selected={subjects} label="Przedmioty" searchInput={true} options={subjectOptions} optionsUrl={'/subject/get-all?page=1&limit=11'} onChangeFn={handleChanngeSubjects} disabled={role !== 'aa6ec0c1-4ea9-4682-81a3-5013bd026af9'} />
             <Textarea className="staff-form__input" value={descripton} label={'Opis'} onChangeFn={handleChangeDescription} />
             <Input className={"staff-form__input"} type={InputType.File} label={'Zdjęcie'} onChangeFn={handleChangePhoto} photo={imageSrc} />
+            <Checkbox className={"staff-form__checkbox"} label={'Widoczność'} text={"Widoczny na stronie."} onChangeFn={handleChanageIsVisible} checked={isVisible} />
             <Button className={"staff-form__button"} text={"Zapisz"} disabled={isButtonDisabled}></Button>
         </Form>
     )

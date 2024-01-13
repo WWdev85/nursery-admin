@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { IconButton, Input, InputType, RepeaterItemFlag } from '../../../components';
+import { IconButton, Input, InputType, RepeaterItemFlag, Select, SelectOption } from '../../../components';
 import './Subject.scss';
 import { FaTrashAlt } from 'react-icons/fa';
+import { Staff } from '../../../types';
 
 export interface SubjectInterface {
     id: string;
     name: string;
+    staffMembers?: Staff[]
+    staffIds: string[];
     flag?: RepeaterItemFlag;
 }
 
@@ -16,31 +19,51 @@ export interface SubjectProps {
     flag?: RepeaterItemFlag,
 }
 
-
-
 export const Subject = (props: SubjectProps) => {
     const { id, items, setItems } = props;
 
     const [name, setName] = useState<string | undefined>("")
-    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+    const [staffMembers, setStaffMembers] = useState<string[]>([])
+    const [options, setOptions] = useState<SelectOption[]>([])
+
 
 
     useEffect(() => {
         const subject = items.find(subject => subject.id === id)
         setName(() => subject?.name)
-        // if (role?.staffCount && role.staffCount > 0) {
-        //     setIsButtonDisabled(true)
-        // }
-
+        if (subject?.staffMembers) {
+            const staff: string[] = []
+            const opt: SelectOption[] = []
+            subject.staffMembers?.map(staffMember => {
+                if (staffMember.id) {
+                    staff.push(staffMember.id)
+                    opt.push({
+                        value: staffMember.id,
+                        label: staffMember.name + " " + staffMember.surname
+                    })
+                }
+                return staffMember
+            })
+            setStaffMembers(() => staff)
+            setOptions(() => opt)
+        }
     }, [items, id])
 
-
+    useEffect(() => {
+        items.map((item: SubjectInterface) => {
+            if (item.id === id) {
+                item.staffIds = staffMembers
+            }
+            return item
+        })
+    }, [staffMembers, id, items])
 
     const handleChangeName = (value: string) => {
         setName(() => value)
         items.map((item: SubjectInterface) => {
             if (item.id === id) {
                 item.name = value
+                item.flag = RepeaterItemFlag.Updated
             }
             return item
         })
@@ -59,10 +82,24 @@ export const Subject = (props: SubjectProps) => {
             ])
         }
     }
+
+    const handleChanngeTeachers = (subjects: string[]) => {
+        setStaffMembers(subjects)
+        items.map((item: SubjectInterface) => {
+            if (item.id === id) {
+                item.staffIds = subjects
+                item.flag = RepeaterItemFlag.Updated
+            }
+            return item
+        })
+    }
+
+    console.log(items)
     return (
         <div className='subject'>
             <Input className={'subject__name'} type={InputType.Text} value={name} onChangeFn={handleChangeName} />
-            <IconButton className={'actions__button actions__button--trash'} icon={<FaTrashAlt />} disabled={isButtonDisabled} id={id} onClickFn={handleDelete} />
+            <Select className={'subject__staff-members'} options={options} multi={true} searchInput={true} selected={staffMembers} optionsUrl={'/staff/get-teachers?page=1&limit=11'} onChangeFn={handleChanngeTeachers} />
+            <IconButton className={'actions__button actions__button--trash subject__delete'} icon={<FaTrashAlt />} id={id} onClickFn={handleDelete} />
         </div>
     )
 }

@@ -44,7 +44,7 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
     }, [getItems])
 
     const changeItemOrder = useCallback((item: T, order: string) => {
-        if (order !== item.order) {
+        if (item.order && order !== item.order) {
             item.order = order as string;
             item.flag = RepeaterItemFlag.Updated
         }
