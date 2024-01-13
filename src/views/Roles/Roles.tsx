@@ -18,14 +18,14 @@ export const Roles = () => {
     }
 
     const handleCreateRole = async (role: RoleInterface) => {
-        const response = await post('/role/add', {
+        await post('/role/add', {
             name: role.name,
             order: role.order,
         })
     }
 
     const handleUpdateRole = async (role: RoleInterface) => {
-        const response = await patch('/role/update', {
+        await patch('/role/update', {
             id: role.id,
             name: role.name,
             order: role.order,
