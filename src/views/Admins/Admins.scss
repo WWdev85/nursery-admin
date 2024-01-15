@@ -1,0 +1,23 @@
+.admins {
+
+    &__wrapper {
+        overflow: auto;
+    }
+}
+
+.admins-table {
+    min-width: 800px;
+}
+
+.create-modal {
+    .container {
+        max-width: 1000px;
+        width: 90%;
+    }
+}
+
+.delete-modal {
+    .container {
+        width: 400px;
+    }
+}

@@ -3,6 +3,7 @@ import './PageNavbar.scss';
 import { Link } from 'react-router-dom';
 import { NavbarLink } from './Link';
 import { FaBook, FaBriefcase, FaBuildingUser, FaGear, FaHouse } from "react-icons/fa6";
+import { FaUserCog } from 'react-icons/fa';
 
 
 interface PageNavbarProps {
@@ -21,6 +22,7 @@ export const PageNavbar = (props: PageNavbarProps) => {
             <Link to={'/roles'}><NavbarLink icon={<FaBriefcase />} name={"Role"} /></Link>
             <Link to={'/subjects'}><NavbarLink icon={<FaBook />} name={"Przedmioty"} /></Link>
             <Link to={'/settings'}><NavbarLink icon={<FaGear />} name={"Ustawienia"} /></Link>
+            <Link to={'/admins'}><NavbarLink icon={<FaUserCog />} name={"Administratorzy"} /></Link>
         </section>
     )
 }

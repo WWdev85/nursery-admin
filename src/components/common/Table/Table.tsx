@@ -68,7 +68,7 @@ export const Table = (props: TableProps) => {
     }, [sourceUrl, state.limit, state.order, state.search, state.currentPage, state.orderBy])
 
     const setTableRows = useCallback(() => {
-        const rows = state.items.map((item, index) => {
+        const rows = state.items?.map((item, index) => {
             return (
                 <tr key={index}>
                     <td className='table-data' key={'Lp.' + index}>

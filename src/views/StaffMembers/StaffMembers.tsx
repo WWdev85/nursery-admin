@@ -85,7 +85,6 @@ export const StaffMembers = () => {
 
     const handleCloseModal = () => {
         setIsModalOpen(false)
-
     }
 
     const changeTableKey = () => {

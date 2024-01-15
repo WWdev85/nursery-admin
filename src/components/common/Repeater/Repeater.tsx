@@ -4,6 +4,7 @@ import { Icon } from '../Icon';
 import { FaAlignJustify } from "react-icons/fa6";
 import { Button } from '../Button';
 import { get } from '../../../functions';
+import { Loader } from '../../../components';
 
 export enum RepeaterItemFlag {
     Deleted = 'deleted',
@@ -32,10 +33,13 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
     const [notDeletedElements, setNotDeletedElements] = useState<T[]>([])
     const [draggedElement, setDraggedElement] = useState<any>()
     const [repeaterKey, setRepeaterKey] = useState<number>(0)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
 
     const getItems = useCallback(async () => {
+        setIsLoading(() => true)
         const response = await get(sourceUrl)
+        setIsLoading(() => false)
         setItems(() => response.items)
     }, [setItems, sourceUrl])
 
@@ -117,6 +121,7 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
     };
 
     return (
+
         <div key={repeaterKey} className={`repeater ${className}`}>
             {
                 items.map((item, index) => {
@@ -138,6 +143,7 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
             }
             <Button className={'repeater__add-button'} text={'Dodaj'} onClickFn={handleAddElement} disabled={false} />
             <Button className={'repeater__save-button'} text={'Zapisz'} disabled={false} onClickFn={handleSaveChanges} />
+            {isLoading && <Loader />}
         </div >
     )
 }

@@ -40,8 +40,8 @@ export const Subjects = () => {
 
 
     return (
-        <div className='roles'>
-            <ContentWrapper className={'roles__wrapper'} title={'Przedmioty'}  >
+        <div className='subjects'>
+            <ContentWrapper className={'subjects__wrapper'} title={'Przedmioty'}  >
                 <Repeater<SubjectProps> draggable={false} componentType={Subject} createElementFn={addNewSubject} sourceUrl='/subject/get-all?page=1&limit=1000&orderBy=name&order=ASC' createFn={handleCreateSubject} updateFn={handleUpdateSubject} deleteFn={handleDeleteSubject} />
             </ContentWrapper>
         </div>
