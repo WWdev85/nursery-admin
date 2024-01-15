@@ -1,5 +1,5 @@
 import { ChangeEvent, ReactNode, useCallback, useEffect, useState } from 'react';
-import { Alert, AlertType, Button, ContentWrapper, Input, InputType } from '../../components';
+import { Alert, AlertType, Button, ContentWrapper, Input, InputType, Loader } from '../../components';
 import { get, getFile, post } from '../../functions';
 import { UpdateSettingsResponse } from '../../types';
 import './Settings.scss';
@@ -12,9 +12,11 @@ export const Settings = () => {
     const [logoSrc, setLogoSrc] = useState<string>("");
     const [logoFile, setLogoFile] = useState<File | null>(null);
     const [alert, setAlert] = useState<ReactNode>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
 
     const getSettings = useCallback(async () => {
+        setIsLoading(() => true)
         const response = await get('/settings/get')
         const logo = await getFile('/settings/get-logo')
         setAppName(() => response.appName)
@@ -83,6 +85,13 @@ export const Settings = () => {
                 <Input className={'settings-wrapper__input'} label='Kolor uzupełniający' value={secondColor} type={InputType.Color} onChangeFn={handleChangeSecondColor}></Input>
                 <Input className={'settings-wrapper__input-file'} type={InputType.File} label={'Logo'} onChangeFn={handleChangeLogoFile} photo={logoSrc} />
                 <Button className={'settings-wrapper__button'} text={'Zapisz'} disabled={false} onClickFn={handleSaveChanges} />
+                {isLoading && <Loader />}
+                <img
+                    src={logoSrc}
+                    alt=""
+                    style={{ display: 'none' }}
+                    onLoad={() => setIsLoading(() => false)}
+                />
             </ContentWrapper>
         </div>
 

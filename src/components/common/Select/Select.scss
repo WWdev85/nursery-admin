@@ -109,3 +109,9 @@
 .disabled {
     opacity: 50%;
 }
+
+.disabled:hover {
+    background-color: transparent;
+    color: $textColor;
+    cursor: auto;
+}
