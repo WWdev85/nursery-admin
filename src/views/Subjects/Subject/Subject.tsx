@@ -94,7 +94,6 @@ export const Subject = (props: SubjectProps) => {
         })
     }
 
-    console.log(items)
     return (
         <div className='subject'>
             <Input className={'subject__name'} type={InputType.Text} value={name} onChangeFn={handleChangeName} />
