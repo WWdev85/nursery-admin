@@ -43,7 +43,8 @@ export const Input = (props: InputProps) => {
     const inputFieldClass = clsx('input__field field',
         !isCorrect && 'field--validation-error',
         icon && 'field--icon',
-        type === InputType.File && 'field--file'
+        type === InputType.File && 'field--file',
+        type === InputType.Color && 'field--color'
     );
 
 
@@ -84,7 +85,7 @@ export const Input = (props: InputProps) => {
                 : null}
             <div className={inputFieldClass}>
                 {iconWithClass}
-                <input className={`field__content ${type === InputType.File ? "field__content--file" : ""}`} type={type} value={value} placeholder={placeholder} onChange={handleChange} disabled={disabled} ref={fileInputRef} />
+                <input className={`field__content field__content--${type}`} type={type} value={value} placeholder={placeholder} onChange={handleChange} disabled={disabled} ref={fileInputRef} />
             </div>
             {!isCorrect && validationErrorMessage && <ValidatorMesage className={'input__validation-error'} message={validationErrorMessage} />}
         </div>

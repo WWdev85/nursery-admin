@@ -85,7 +85,6 @@ export const Table = (props: TableProps) => {
                         if (value === false) {
                             value = 'Nie';
                         }
-                        console.log(Array.isArray(value))
                         if (Array.isArray(value)) {
                             value = value.map((item) => item.name).join(',  ')
                         }

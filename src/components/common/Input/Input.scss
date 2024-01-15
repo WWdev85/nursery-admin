@@ -32,7 +32,7 @@
         border: 1px solid $inputColor;
         border-radius: 5px;
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
     }
 
@@ -83,6 +83,11 @@
             outline: none !important;
         }
 
+        &--color {
+            padding: 2px;
+            cursor: pointer;
+        }
+
         &--file-button {
             display: none;
             margin-top: 15px;
@@ -114,6 +119,9 @@
 .field--file {
     height: 0;
     width: 0;
+}
 
-
+.field--color {
+    padding: 2px;
+    width: 38px;
 }
