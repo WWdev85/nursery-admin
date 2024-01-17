@@ -14,14 +14,15 @@ export enum InputType {
     Date = 'date',
     Email = 'email',
     Color = 'color',
-    File = 'file'
+    File = 'file',
+    Number = 'number',
 }
 
 interface InputProps {
     className: string,
     type: InputType,
     placeholder?: string,
-    value?: string,
+    value?: string | number,
     validationRegex?: RegexPattern | string,
     icon?: ReactElement,
     onChangeFn: Function,
@@ -29,11 +30,12 @@ interface InputProps {
     label?: string,
     disabled?: boolean,
     photo?: string,
+    min?: number,
 
 }
 
 export const Input = (props: InputProps) => {
-    const { className, type, value, placeholder, label, validationRegex, icon, onChangeFn, validationErrorMessage, disabled, photo } = props;
+    const { className, type, value, placeholder, label, validationRegex, icon, onChangeFn, validationErrorMessage, disabled, photo, min } = props;
 
     const [isCorrect, setIsCorrect] = useState<boolean>(true)
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -85,7 +87,7 @@ export const Input = (props: InputProps) => {
                 : null}
             <div className={inputFieldClass}>
                 {iconWithClass}
-                <input className={`field__content field__content--${type}`} type={type} value={value} placeholder={placeholder} onChange={handleChange} disabled={disabled} ref={fileInputRef} />
+                <input className={`field__content field__content--${type}`} type={type} min={min} value={value} placeholder={placeholder} onChange={handleChange} disabled={disabled} ref={fileInputRef} />
             </div>
             {!isCorrect && validationErrorMessage && <ValidatorMesage className={'input__validation-error'} message={validationErrorMessage} />}
         </div>

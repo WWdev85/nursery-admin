@@ -13,7 +13,7 @@ export type FileObject = {
 } | undefined
 
 interface FlexibleObject {
-    [key: string]: string | Blob | boolean | number | null | undefined;
+    [key: string]: string | Blob | boolean | number | null | undefined | {}[];
 }
 
 

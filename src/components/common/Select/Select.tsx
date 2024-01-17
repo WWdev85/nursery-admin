@@ -50,7 +50,6 @@ export const Select = (props: SelectProps) => {
                 label: item.name
             }
         })
-
         setOptionsArray(items)
     }, [search, optionsUrl])
 
@@ -60,12 +59,13 @@ export const Select = (props: SelectProps) => {
 
     useEffect(() => {
         if (search && search?.length > 0)
-            getOptions()
-    }, [search, getOptions])
+            if (optionsUrl) {
+                getOptions()
+            } else {
 
+            }
 
-
-
+    }, [search, optionsUrl, getOptions])
 
     const handleOptionClick = useCallback((option: SelectOption) => {
 
@@ -104,11 +104,16 @@ export const Select = (props: SelectProps) => {
 
         const opt = optionsArray?.map((option, index) => {
             const disabledOptions = disabledOptionsIds?.find(o => o === option.value)
-            return (
-                <div className={`${option.value === selected ? 'content__option content__option--selected' : 'content__option'} ${multi ? "multi" : ""} ${disabledOptions ? "disabled" : ""}`} key={index} onClick={() => !multi && !disabledOptions && handleOptionClick(option)}>
-                    {multi && Array.isArray(selected) ? <Checkbox className={""} text={option.label} onChangeFn={() => !disabledOptions && (handleOptionClick(option))} checked={selected.find(val => val === option.value) ? true : false} /> : option.label}
-                </div>
-            )
+            if ((!searchInput) || (search?.length === 0) || (search && option.label.toLocaleLowerCase().includes(search.toLocaleLowerCase()))) {
+                return (
+                    <div className={`${option.value === selected ? 'content__option content__option--selected' : 'content__option'} ${multi ? "multi" : ""} ${disabledOptions ? "disabled" : ""}`} key={index} onClick={() => !multi && !disabledOptions && handleOptionClick(option)}>
+                        {multi && Array.isArray(selected) ? <Checkbox className={""} text={option.label} onChangeFn={() => !disabledOptions && (handleOptionClick(option))} checked={selected.find(val => val === option.value) ? true : false} /> : option.label}
+                    </div>
+                )
+            }
+            else {
+                return null
+            }
         })
         if (typeof search === 'string') {
             opt.unshift(<Input className={"content__search"} key={'search'} type={InputType.Text} placeholder="wyszukaj" value={search} onChangeFn={handleChangeSearch} />)
@@ -121,7 +126,7 @@ export const Select = (props: SelectProps) => {
         } else {
             setOptionLabel(placeholder ? placeholder : '--------')
         }
-    }, [optionsArray, selected, search, multi, placeholder, disabledOptionsIds, handleChangeSearch, handleOptionClick])
+    }, [optionsArray, selected, search, multi, placeholder, disabledOptionsIds, searchInput, handleChangeSearch, handleOptionClick])
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {

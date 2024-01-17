@@ -4,7 +4,7 @@ import { FaEnvelope, FaKey } from "react-icons/fa6";
 import { SendCodeResponse, RegexPattern, ValidateCodeResponse } from '../../types';
 import { Alert, AlertType, Button, Form, Input, InputType, LoginModal } from "../../components"
 import './SendCodeView.scss'
-import background from '../../assets/images/background3.png'
+import background from '../../assets/images/background.png'
 import { post, validate } from '../../functions';
 
 export const SendCodeView = () => {

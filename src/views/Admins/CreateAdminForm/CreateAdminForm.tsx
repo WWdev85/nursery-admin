@@ -56,7 +56,6 @@ export const CreateAdminForm = (props: CreateAdminFormProps) => {
     }
 
     const handleChangeRole = (role: SelectOption) => {
-        console.log()
         setRoleId(role.value as string)
     }
 
@@ -65,11 +64,9 @@ export const CreateAdminForm = (props: CreateAdminFormProps) => {
             staffId: staffMember.value as string,
             role: roleId
         })
-        console.log(response)
         onSubmitFn()
     }
 
-    console.log(staffMember)
     return (
         <Form onSubmitFn={handleSubmit} className={'admin-form'}>
             <Select className={"admin-form__select"} options={[staffMember]} label="Pracownik" searchInput={true} selected={staffMember.value} optionsUrl={'/staff/get-teachers?page=1&limit=100'} disabledOptionsIds={disabledOptionsIds} onChangeFn={handleChangeStaffMember} />

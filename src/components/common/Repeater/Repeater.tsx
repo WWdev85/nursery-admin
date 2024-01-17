@@ -12,14 +12,18 @@ export enum RepeaterItemFlag {
 }
 
 interface RepeaterProps<T> {
-    sourceUrl: string;
-    createFn: Function;
-    updateFn: Function;
-    deleteFn: Function;
+    sourceUrl?: string;
+    source?: any;
+    setSource?: Function
+    createFn?: Function;
+    updateFn?: Function;
+    deleteFn?: Function;
     className?: string;
     draggable: boolean;
     componentType: React.ComponentType<T>;
-    createElementFn: Function
+    createElementFn: Function;
+    noSaveButton?: boolean;
+    label?: string;
 }
 
 
@@ -27,7 +31,7 @@ interface RepeaterProps<T> {
 export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id: string }>(props: RepeaterProps<T>) => {
 
 
-    const { className, draggable, componentType: Component, createElementFn, sourceUrl, createFn, updateFn, deleteFn } = props
+    const { className, draggable, componentType: Component, createElementFn, sourceUrl, source, setSource, createFn, updateFn, deleteFn, noSaveButton, label } = props
 
     const [items, setItems] = useState<T[]>([])
     const [notDeletedElements, setNotDeletedElements] = useState<T[]>([])
@@ -37,11 +41,17 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
 
 
     const getItems = useCallback(async () => {
-        setIsLoading(() => true)
-        const response = await get(sourceUrl)
-        setIsLoading(() => false)
-        setItems(() => response.items)
-    }, [setItems, sourceUrl])
+
+        if (sourceUrl) {
+            setIsLoading(() => true)
+            const response = await get(sourceUrl)
+            setIsLoading(() => false)
+            setItems(() => response.items)
+        } else {
+            setItems(() => source ? source : [])
+        }
+
+    }, [setItems, sourceUrl, source])
 
     useEffect(() => {
         getItems()
@@ -57,7 +67,8 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
     useEffect(() => {
         setNotDeletedElements(() => items.filter((item) => item.flag !== RepeaterItemFlag.Deleted).map((item, index) => { changeItemOrder(item, index as unknown as string); return item }));
         setRepeaterKey((r) => r + 1)
-    }, [items, changeItemOrder])
+        setSource && items.length > 0 && setSource(items);
+    }, [items, changeItemOrder, setSource])
 
     const handleAddElement = () => {
         const newElement = createElementFn()
@@ -68,10 +79,10 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
     }
     const handleSaveChanges = async () => {
         const promises = items.map(async (item) => {
-            if (item.flag === RepeaterItemFlag.Deleted) {
+            if (item.flag === RepeaterItemFlag.Deleted && deleteFn) {
                 await deleteFn(item.id);
 
-            } else if (item.flag === RepeaterItemFlag.Updated) {
+            } else if (item.flag === RepeaterItemFlag.Updated && createFn && updateFn) {
                 if (item.id.includes('new')) {
                     await createFn(item);
                 } else {
@@ -123,6 +134,7 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
     return (
 
         <div key={repeaterKey} className={`repeater ${className}`}>
+            {label && <label className={'input__label'}>{label}</label>}
             {
                 items.map((item, index) => {
                     if (item.flag !== RepeaterItemFlag.Deleted) {
@@ -141,8 +153,8 @@ export const Repeater = <T extends { flag?: RepeaterItemFlag, order?: string, id
                     }
                 })
             }
-            <Button className={'repeater__add-button'} text={'Dodaj'} onClickFn={handleAddElement} disabled={false} />
-            <Button className={'repeater__save-button'} text={'Zapisz'} disabled={false} onClickFn={handleSaveChanges} />
+            <Button className={'repeater__add-button'} type='button' text={'Dodaj'} onClickFn={handleAddElement} disabled={false} />
+            {!noSaveButton && <Button className={'repeater__save-button'} text={'Zapisz'} disabled={false} onClickFn={handleSaveChanges} />}
             {isLoading && <Loader />}
         </div >
     )
