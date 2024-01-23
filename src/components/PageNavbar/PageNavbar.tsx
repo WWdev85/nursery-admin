@@ -23,7 +23,7 @@ export const PageNavbar = (props: PageNavbarProps) => {
             <Link to={'/subjects'}><NavbarLink icon={<FaBook />} name={"Przedmioty"} /></Link>
             <Link to={'/settings'}><NavbarLink icon={<FaGear />} name={"Ustawienia"} /></Link>
             <Link to={'/admins'}><NavbarLink icon={<FaUserCog />} name={"Administratorzy"} /></Link>
+            <Link to={'/curriculums'}><NavbarLink icon={<FaBook />} name={"Programy nauczania"} /></Link>
         </section>
     )
 }
-

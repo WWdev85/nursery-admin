@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { RegexPattern, ResetPasswordResponse } from '../../types';
 import { Alert, AlertType, Button, Form, Input, InputType, LoginModal } from "../../components"
-import background from '../../assets/images/background3.png'
+import background from '../../assets/images/background.png'
 import { post, validate } from '../../functions';
 
 export const ChangePwdView = () => {

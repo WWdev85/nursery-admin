@@ -68,6 +68,9 @@
 }
 
 .content {
+    max-height: 300px;
+    overflow-y: auto;
+
     &__option {
         height: 38px;
         display: flex;
@@ -77,8 +80,9 @@
         cursor: pointer;
 
         &--selected {
-            background-color: $primaryColor;
-            color: white;
+            background-color: $primaryColor !important;
+            color: white !important;
+            opacity: 1 !important;
         }
 
 

@@ -22,7 +22,7 @@ export const IconButton = (props: IconButtonProps) => {
     }
 
     return (
-        <button className={iconButtonClass} onClick={handleClick} disabled={disabled}>
+        <button className={iconButtonClass} type='button' onClick={handleClick} disabled={disabled}>
             {icon}
         </button>
     )

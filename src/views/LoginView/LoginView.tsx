@@ -4,7 +4,7 @@ import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { LoginResponse, RegexPattern } from '../../types';
 import { Alert, AlertType, Button, Form, Input, InputType, LoginModal } from "../../components"
 import './LoginView.scss'
-import background from '../../assets/images/background3.png'
+import background from '../../assets/images/background.png'
 import { post, validate } from '../../functions';
 
 export const LoginView = () => {

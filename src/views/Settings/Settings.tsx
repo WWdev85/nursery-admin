@@ -73,12 +73,16 @@ export const Settings = () => {
         } else {
             setAlert(<Alert message={'Błąd'} className={''} type={AlertType.Error} />)
         }
+        setTimeout(() => {
+            setAlert(null)
+        }, 2000)
     }
 
     return (
         <div className='settings'>
-            {alert}
+
             <ContentWrapper className={'settings__wrapper settings-wrapper'} title={'Ustawienia'}>
+                {alert}
                 <Input className={'settings-wrapper__input'} label='Nazwa placówki' value={appName} type={InputType.Text} onChangeFn={handleChangeAppName}></Input>
                 <Input className={'settings-wrapper__input'} label='Adres strony' value={appUrl} type={InputType.Text} onChangeFn={handleChangeAppUrl}></Input>
                 <Input className={'settings-wrapper__input'} label='Kolor podstawowy' value={firstColor} type={InputType.Color} onChangeFn={handleChangeFirstColor}></Input>
