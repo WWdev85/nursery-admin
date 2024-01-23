@@ -58,6 +58,11 @@ export const CurriculumSubject = (props: CurriculumSubjectProps) => {
             }
             return item
         })
+        if (setItems) {
+            setItems(() => [
+                ...newItems
+            ])
+        }
     }
 
     const handleDelete = () => {

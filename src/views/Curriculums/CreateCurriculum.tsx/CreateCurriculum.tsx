@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import { Button, Form, Input, InputType, Loader, Repeater, RepeaterItemFlag, SelectOption } from "../../../components";
+import { ReactNode, useCallback, useEffect, useState } from "react";
+import { Alert, AlertType, Button, Form, Input, InputType, Loader, Repeater, RepeaterItemFlag, SelectOption } from "../../../components";
 import { CurriculumSubject, CurriculumSubjectInterface, CurriculumSubjectProps } from "./CurriculumSubject/CurriculumSubject";
 import { get, patch, post } from "../../../functions";
 import './CreateCurriculum.scss'
+import { CreateCurriculumResponse, UpdateCurriculumResponse } from "../../../types";
 
 interface CreateCurriculumProps {
     id?: string;
@@ -15,6 +16,7 @@ export const CreateCurriculum = (props: CreateCurriculumProps) => {
     const [subjects, setSubjects] = useState<CurriculumSubjectInterface[] | undefined>(undefined);
     const [subjectOptions, setSubjectOptions] = useState<SelectOption[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [alert, setAlert] = useState<ReactNode | null>(null)
 
     const getCurriculum = useCallback(async (options: SelectOption[]) => {
         const response = await get(`/curriculum/get-one/${id}`);
@@ -70,24 +72,33 @@ export const CreateCurriculum = (props: CreateCurriculumProps) => {
         setName(name)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const curriculumSubjects = subjects?.map((subject) => {
             return {
                 subjectId: subject.id,
                 hours: subject.weeklyHours
             }
         })
+        let response;
         if (id) {
-            const response = patch('/curriculum/update', {
+            response = await patch('/curriculum/update', {
                 id: id,
                 name,
                 subjects: curriculumSubjects
             })
         } else {
-            const response = post('/curriculum/add', {
+            response = await post('/curriculum/add', {
                 name,
                 subjects: curriculumSubjects
             })
+        }
+        if (response === CreateCurriculumResponse.Success || response === UpdateCurriculumResponse.Success) {
+            onSubmitFn()
+        } else {
+            setAlert(<Alert message={'Błąd'} className={''} type={AlertType.Error} />)
+            setTimeout(() => {
+                setAlert(null)
+            }, 2000)
         }
 
 
@@ -102,6 +113,7 @@ export const CreateCurriculum = (props: CreateCurriculumProps) => {
             <Input className={"curriculum-form__input"} type={InputType.Text} value={name} label='Nazwa' onChangeFn={handleChanageName} />
             {subjects !== undefined && <Repeater<CurriculumSubjectProps> draggable={false} componentType={CurriculumSubject} createElementFn={addNewCurriculumSubject} source={subjects} setSource={setSubjects} noSaveButton={true} label={'Przedmioty'} />}
             <Button className={"curriculum-form__button"} type="submit" text={"Zapisz"} disabled={false}></Button>
+            {alert}
         </Form>
     )
 }
