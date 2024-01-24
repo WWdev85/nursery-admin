@@ -24,7 +24,6 @@ export const CreateAdminForm = (props: CreateAdminFormProps) => {
     const getAdmins = useCallback(async () => {
         setIsLoading(() => true)
         const admins = await get('/admin/get-all?page=1&limit=1000')
-        console.log(admins)
         setIsLoading(() => false)
         const admin = admins.items.find((admin: GetOneAdminResponse) => admin?.id === id)
 

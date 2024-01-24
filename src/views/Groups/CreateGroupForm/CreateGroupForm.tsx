@@ -55,10 +55,9 @@ export const CreateGroupForm = (props: CreateGroupFormProps) => {
         setIsLoading(() => true)
         const group = await get(`/group/get-one/${id}`)
         const photo = await getFile(`/group/get-photo/${id}`);
-        console.log(group)
         setTeacher(() => group.teacher?.id)
-        setCurriculum(() => group.curriculum.id)
-        setAdmins(() => group.admins.map((admin: { id: string }) => admin.id))
+        setCurriculum(() => group.curriculum?.id)
+        setAdmins(() => group.admins?.map((admin: { id: string }) => admin.id))
         setName(() => group.name)
         setImageSrc(() => photo.url);
         setIsLoading(() => false)
