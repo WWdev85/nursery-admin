@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Admins, ChangePwdView, LoginView, Roles, SendCodeView, Settings, StaffMembers, Subjects, Curriculums } from '../..//views';
+import { Admins, ChangePwdView, LoginView, Roles, SendCodeView, Settings, StaffMembers, Subjects, Curriculums, Groups } from '../..//views';
 import './PageContent.scss';
 
 
@@ -18,6 +18,7 @@ export const PageContent = () => {
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/admins' element={<Admins />} />
                 <Route path='/curriculums' element={<Curriculums />} />
+                <Route path='/groups' element={<Groups />} />
             </Routes>
 
 

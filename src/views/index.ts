@@ -8,3 +8,4 @@ export * from './Subjects';
 export * from './Settings';
 export * from './Admins';
 export * from './Curriculums';
+export * from './Groups';

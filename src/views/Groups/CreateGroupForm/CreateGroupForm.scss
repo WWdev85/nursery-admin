@@ -1,0 +1,35 @@
+.group-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &__select {
+        flex-basis: 49%;
+    }
+
+    &__button {
+        margin-top: 50px;
+        margin-bottom: 100px;
+        justify-self: center;
+        flex-basis: 33%;
+        margin-right: 51%;
+    }
+}
+
+@media(max-width: 640px) {
+    .group-form {
+
+        &__input {
+            flex-basis: 100%;
+        }
+
+        &__select {
+            flex-basis: 100%;
+        }
+
+        &__button {
+            flex-basis: 100%;
+            margin-right: 0;
+        }
+    }
+}
