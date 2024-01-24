@@ -52,7 +52,7 @@ export const CreateAdminForm = (props: CreateAdminFormProps) => {
     useEffect(() => {
         getGroups()
         getAdmins()
-    }, [getAdmins])
+    }, [getAdmins, getGroups])
 
     const roles = [
         {
