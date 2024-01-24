@@ -33,6 +33,11 @@ export const Admins = () => {
             key: "role",
             width: 200
         },
+        {
+            title: "Grupy",
+            key: "groups",
+            width: 200
+        },
 
     ];
 

@@ -28,6 +28,11 @@ export const post = async (url: string, data: FlexibleObject, file?: FileObject)
         formData.append(file.label, file.content as File);
         Object.keys(data).forEach(key => {
             let value = data[key];
+            if (Array.isArray(value)) {
+                value.forEach((item, index) => {
+                    formData.append(`${key}[${index}]`, item as string | Blob);
+                });
+            }
             if (typeof value === 'object' && key === 'address') {
                 value = JSON.stringify(value);
             } else if (typeof value === 'boolean') {
@@ -57,6 +62,11 @@ export const patch = async (url: string, data: FlexibleObject, file?: FileObject
         formData.append(file.label, file.content as File);
         Object.keys(data).forEach(key => {
             let value = data[key];
+            if (Array.isArray(value)) {
+                value.forEach((item, index) => {
+                    formData.append(`${key}[${index}]`, item as string | Blob);
+                });
+            }
             if (typeof value === 'object' && key === 'address') {
                 value = JSON.stringify(value);
             } else if (typeof value === 'boolean') {

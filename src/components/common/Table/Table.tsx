@@ -75,7 +75,10 @@ export const Table = (props: TableProps) => {
                         {(state.currentPage - 1) * state.limit + index + 1}
                     </td>
                     {columns.map((column) => {
-                        let value = !column.key.includes('.') ? item[column.key] : item[column.key.split('.')[0]][column.key.split('.')[1]]
+                        let value = !column.key.includes('.') ? item[column.key] :
+                            item[column.key.split('.')[0]] ?
+                                item[column.key.split('.')[0]][column.key.split('.')[1]] : null
+
                         if (column.key === 'address') {
                             value = `ul. ${value.street} ${value.houseNumber}, ${value.postalCode} ${value.town}`
                         }

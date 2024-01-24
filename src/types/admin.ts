@@ -24,6 +24,13 @@ export enum CreateAdminResponse {
     StaffNotFound = 'Staff mambember not exists.',
 }
 
+export enum UpdateAdminResponse {
+    Success = 'Administrator has been updated.',
+    StaffNotFound = 'Staff mamber not exists.',
+    AdminNotFound = 'Administrator not exists.',
+    NotFound = "NotFound"
+}
+
 export type GetOneAdminResponse = {
     id: string;
     role: AdminRole;
